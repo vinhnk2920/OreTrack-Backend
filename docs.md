@@ -196,3 +196,33 @@ curl --location '{{url}}/list-alert-message' \
     "success": true
 }
 ```
+
+## 6. API create alert message
+
+> URL
+
+```
+{{url}}/create-alert-message
+```
+
+> CURL
+```curl
+curl --location '{{url}}/create-alert-message' \
+--header 'Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwYXNzd29yZCI6InBia2RmMjpzaGEyNTY6MjYwMDAwJDlKaktkSFF3MEVUVWY0U0skYWNiYmQ2ZjgzMmFhNTE4Mjk5NDMyZDA0MzNmMmI1YWZkZGI1MTY1NGQzNzA3YTg4Y2Y0MTU5MWYzN2MwYTQyNSJ9.71t39P09T81WEg9IjFXUEWRzJ6fAOqcR5KlcQ9krJho' \
+--header 'Content-Type: application/json' \
+--data '{
+    "name": "Hướng dẫn kỹ năng an toàn trước lũ lụt 2",
+    "disaster_id": 1,
+    "content": "Để đảm bảo an toàn tính mạng và tài sản, người dân cần lưu ý: TRƯỚC LŨ: Thường xuyên theo dõi thông tin, cảnh báo mưa, lũ. Chuẩn bị thuyền, phao, bè, máng, vật nổi; gia cố nhà làm gác lửng, lối thoát trên mái nhà để ở tạm, cất giữ đồ đạc đề phòng lũ. Di chuyển gia súc, gia cầm, đồ đạc lên nơi cao để tránh ngập. Bảo vệ nguồn nước sạch; dự trữ nước uống, lương thực, thực phẩm, thuốc men, các vật dụng cần thiết đủ dùng ít nhất trong 7 ngày. Tìm hiểu, nắm bắt các tuyến đường sơ tán khẩn cấp đến nơi an toàn. Chủ động sơ tán khỏi vùng bãi sông, vùng thấp trũng, vùng có nguy cơ sạt lở, lũ quét, các công trường đang thi công.???? Dừng hoạt động tại các công trình đang thi công dở dang. Đề phòng lũ xảy ra vào ban đêm. Lưu giữ các số điện thoại và địa chỉ liên lạc trong trường hợp khẩn cấp.",
+    "message_type": "tutorial"
+}'
+```
+> Success response
+```json
+{
+    "data": [],
+    "message": "Create alert message successfully!",
+    "success": true
+}
+```
+

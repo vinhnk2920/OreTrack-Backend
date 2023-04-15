@@ -101,6 +101,7 @@ class AlertMessage(BaseModel):
     name = CharField()
     disaster_id = IntegerField()
     content = CharField()
+    message_type = CharField()
     created_at = DateTimeField()
     updated_at = DateTimeField()
     created_by = IntegerField()
