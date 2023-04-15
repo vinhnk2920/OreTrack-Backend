@@ -684,6 +684,54 @@ def get_rescue_team(current_user):
         })
 
 
+@app.route('/create-forecast', methods=['POST'])
+@token_required
+def create_forecast(current_user):
+    if current_user.role_id not in [1, 3]:
+        return json.jsonify({
+            'success': False,
+            'message': 'Do not have permission to access this function!!',
+            'data': []
+        })
+
+    params = request.json
+    name = params.get('name')
+    full_address = params.get('full_address')
+    disaster_type = params.get('disaster_type')
+    forecast_start = params.get('forecast_start')
+    forecast_end = params.get('forecast_end')
+    reported_by = params.get('reported_by')
+
+    if not name or not full_address or not disaster_type or not forecast_start or not forecast_end or not reported_by:
+        return json.jsonify({
+            'success': False,
+            'message': 'Missing some params!!',
+            'data': []
+        })
+    try:
+        data_save = {
+            'name': name,
+            'full_address': full_address,
+            'disaster_type': disaster_type,
+            'forecast_start': forecast_start,
+            'forecast_end': forecast_end,
+            'reported_by': reported_by
+        }
+        Forecast.create(**data_save)
+        return json.jsonify({
+            'success': True,
+            'message': 'Create forecast successfully!',
+            'data': []
+        })
+    except Exception as e:
+        print(e)
+        return jsonify({
+            'success': False,
+            'message': 'Fail to create forecast!',
+            'data': []
+        })
+
+
 if __name__ == '__main__':
     app.debug = True
     app.run()
