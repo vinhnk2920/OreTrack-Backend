@@ -4,5 +4,3 @@ Backend source code for OreTrack. Oretrack is an application for rescue. Develop
 ## run code
 
 > flask --app app.py --debug run
-
-Build COmmit
