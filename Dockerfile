@@ -1,5 +1,5 @@
 # Set the base image to Python 3.9
-FROM python:3.10.9-slim-bullseye
+FROM cr1.viettelcloud.vn/oreoreo-junction-qduiqy5t4x/oreotrack-backend-base:latest
 
 # Set the working directory
 WORKDIR /backend
