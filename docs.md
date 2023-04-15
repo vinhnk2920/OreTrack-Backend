@@ -542,3 +542,50 @@ curl --location '{{url}}/get-detail-sos?sos_id=1' \
     "success": true
 }
 ```
+
+## 12. API get detail sos
+
+> URL
+
+```
+{{url}}/get-rescue-team
+```
+
+> CURL
+```curl
+curl --location '{{url}}/get-rescue-team?team_id=3' \
+--header 'Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwYXNzd29yZCI6InBia2RmMjpzaGEyNTY6MjYwMDAwJDlKaktkSFF3MEVUVWY0U0skYWNiYmQ2ZjgzMmFhNTE4Mjk5NDMyZDA0MzNmMmI1YWZkZGI1MTY1NGQzNzA3YTg4Y2Y0MTU5MWYzN2MwYTQyNSJ9.71t39P09T81WEg9IjFXUEWRzJ6fAOqcR5KlcQ9krJho'
+```
+
+> Params
+
+| param   | type | required |
+|---------|------|----------|
+| team_id | int  | YES      |
+
+> Success response
+```json
+{
+    "data": {
+        "address": "Xã Ngọk Tem - huyện Kon Plong - tỉnh Kom Tum",
+        "leader_name": null,
+        "members": [
+            {
+                "email": null,
+                "fullname": null,
+                "phone": null
+            },
+            {
+                "email": null,
+                "fullname": null,
+                "phone": null
+            }
+        ],
+        "name": "Đội cứu hộ tây Ngok Pem",
+        "num_of_member": 20,
+        "phone": "0399472948"
+    },
+    "message": "Get detail sos successfully!",
+    "success": true
+}
+```

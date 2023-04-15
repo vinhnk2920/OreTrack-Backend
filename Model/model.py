@@ -135,6 +135,7 @@ class Department(BaseModel):
     phone = CharField()
     department_type = CharField()
     member = IntegerField()
+    leader = IntegerField()
     available = IntegerField()
     rating = FloatField()
 

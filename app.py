@@ -656,12 +656,23 @@ def get_rescue_team(current_user):
             'data': []
         })
     try:
-        rescue_team = Department.select(Department.id, Department.name, Department).where(Department.id == team_id).dicts()
+        rescue_team = Department.select(Department.id, Department.name, Department.leader, Department.member,
+                                        Department.address_id, Department.phone, Addresses.full_address). \
+            join(Addresses, on=(Department.address_id == Addresses.id)). \
+            where(Department.id == team_id and Department.department_type == 'rescue').first()
+
+        leader_team = User.select(User.fullname).where(User.id == rescue_team.leader).first()
+        members = User.select(User.fullname, User.phone, User.email).where(User.department_id == team_id).dicts()
         return json.jsonify({
             'success': True,
             'message': 'Get detail sos successfully!',
             'data': {
-                "name": rescue_team.name
+                "name": rescue_team.name,
+                "leader_name": leader_team.fullname,
+                "phone": rescue_team.phone,
+                "num_of_member": rescue_team.member,
+                "address": rescue_team.addresses.full_address,
+                "members": list(members)
             }
         })
     except Exception as e:
