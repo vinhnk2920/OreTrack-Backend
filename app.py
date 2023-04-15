@@ -3,7 +3,7 @@ import jwt
 from flask import Flask, request, json, jsonify, make_response
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from Model.model import User, Disaster, Addresses, Rescue
+from Model.model import User, Disaster, Addresses, Rescue, Forecast, DisasterType, AlertMessage
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'NoBaABRXyMcHvWnCTLtkpL0BX7iOONf9'
@@ -228,6 +228,63 @@ def get_detail_disaster(current_user):
         return jsonify({
             'success': False,
             'message': 'Fail to get detail disasters!',
+            'data': []
+        })
+
+
+@app.route('/list-forecast', methods=['GET'])
+@token_required
+def get_forecast(current_user):
+    if current_user.role_id not in [1, 3]:
+        return json.jsonify({
+            'success': False,
+            'message': 'Do not have permission to access this function!!',
+            'data': []
+        })
+
+    try:
+        forecasts = Forecast.select(Forecast.id, Forecast.name, Forecast.full_address, Forecast.disaster_type,
+                                    DisasterType.name.alias('disaster_name'), DisasterType.image.alias('image'),
+                                    Forecast.forecast_start, Forecast.forecast_end, Forecast.reported_by). \
+            join(DisasterType, on=(Forecast.disaster_type == DisasterType.id)).dicts()
+
+        return jsonify({
+            'success': True,
+            'message': 'Get list forecasts successfully!',
+            'data': list(forecasts)
+        })
+    except Exception as e:
+        print(e)
+        return jsonify({
+            'success': False,
+            'message': 'Fail to get list forecasts!',
+            'data': []
+        })
+
+
+@app.route('/list-alert-message', methods=['GET'])
+@token_required
+def list_alert_message(current_user):
+    if current_user.role_id not in [1, 3]:
+        return json.jsonify({
+            'success': False,
+            'message': 'Do not have permission to access this function!!',
+            'data': []
+        })
+
+    try:
+        alert_messages = AlertMessage.select().where(AlertMessage.created_by == current_user.id).dicts()
+
+        return jsonify({
+            'success': True,
+            'message': 'Get list alert message successfully!',
+            'data': list(alert_messages)
+        })
+    except Exception as e:
+        print(e)
+        return jsonify({
+            'success': False,
+            'message': 'Fail to get list alert message!',
             'data': []
         })
 

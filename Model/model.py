@@ -70,3 +70,41 @@ class Rescue(BaseModel):
 
     class Meta:
         table_name = "rescue"
+
+
+class Forecast(BaseModel):
+    id = IntegerField()
+    name = CharField()
+    full_address = CharField()
+    disaster_type = IntegerField()
+    forecast_start = DateField()
+    forecast_end = DateField()
+    reported_by = CharField()
+
+    class Meta:
+        table_name = "forecasts"
+
+
+class DisasterType(BaseModel):
+    id = IntegerField()
+    name = CharField()
+    description = CharField()
+    image = CharField()
+    created_at = DateTimeField()
+
+    class Meta:
+        table_name = "disaster_type"
+
+
+class AlertMessage(BaseModel):
+    id = IntegerField()
+    name = CharField()
+    disaster_id = IntegerField()
+    content = CharField()
+    created_at = DateTimeField()
+    updated_at = DateTimeField()
+    created_by = IntegerField()
+    updated_by = IntegerField()
+
+    class Meta:
+        table_name = "alert_messages"
