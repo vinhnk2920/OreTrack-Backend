@@ -109,3 +109,51 @@ class AlertMessage(BaseModel):
 
     class Meta:
         table_name = "alert_messages"
+
+
+class Sos(BaseModel):
+    id = IntegerField()
+    phone = CharField()
+    name = CharField()
+    address_id = IntegerField()
+    number_of_people = IntegerField()
+    lat = FloatField()
+    lng = FloatField()
+    risk_level = IntegerField()
+    content = CharField()
+    status = CharField()
+    created_at = DateTimeField()
+
+    class Meta:
+        table_name = "sos"
+
+
+class Department(BaseModel):
+    id = IntegerField()
+    name = CharField()
+    address_id = IntegerField()
+    phone = CharField()
+    department_type = CharField()
+    member = IntegerField()
+    leader = IntegerField()
+    available = IntegerField()
+    rating = FloatField()
+
+    class Meta:
+        table_name = "departments"
+
+
+class CoordinateRescue(BaseModel):
+    id = IntegerField()
+    order_team = IntegerField()
+    receive_team = IntegerField()
+    num_of_people = IntegerField()
+    status = CharField()
+    disaster_id = IntegerField()
+    created_at = DateTimeField()
+    updated_at = DateTimeField()
+    created_by = IntegerField()
+    updated_by = IntegerField()
+
+    class Meta:
+        table_name = "coordinate_rescue"
