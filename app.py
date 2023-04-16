@@ -289,6 +289,50 @@ def list_alert_message(current_user):
         })
 
 
+@app.route('/create-alert-message', methods=['POST'])
+@token_required
+def create_alert_message(current_user):
+    if current_user.role_id not in [1, 3]:
+        return json.jsonify({
+            'success': False,
+            'message': 'Do not have permission to access this function!!',
+            'data': []
+        })
+
+    params = request.json
+
+    if not params.get('name') or not params.get('disaster_id') or not params.get('content') or not params.get(
+            'message_type'):
+        print(params.get('name'))
+        return json.jsonify({
+            'success': False,
+            'message': 'Missing some params!!',
+            'data': []
+        })
+    try:
+        data_save = {
+            'name': params.get('name'),
+            'disaster_id': params.get('disaster_id'),
+            'content': params.get('content'),
+            'message_type': params.get('message_type'),
+            'created_by': current_user.id
+        }
+        AlertMessage.create(**data_save)
+
+        return json.jsonify({
+            'success': True,
+            'message': 'Create alert message successfully!',
+            'data': []
+        })
+    except Exception as e:
+        print(e)
+        return jsonify({
+            'success': False,
+            'message': 'Fail to create alert message!',
+            'data': []
+        })
+
+
 if __name__ == '__main__':
     app.debug = True
     app.run()
