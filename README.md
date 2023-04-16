@@ -35,10 +35,10 @@ The purpose of OreTrack is to predict and prepare for emergency situations and t
 ## System design
 
 ### Use case diagram
-![](C:\Users\Admin\Downloads\Oretrack_usecase.png "Use case diagram of OreTrack")
+![](https://github.com/vinhnk2920/OreTrack-Backend/blob/main/static/Oretrack_usecase.png)
 
 ### ERD
-![](C:\Users\Admin\Downloads\OreTrack-ER-diagram.png "ER diagram of OreTrack")
+![](https://github.com/vinhnk2920/OreTrack-Backend/blob/main/static/OreTrack-ER-diagram.png)
 
 ## Tech stack
 1. Front-end: HTML, CSS (Bootstrap), JavaScript (VueJS)
@@ -46,7 +46,7 @@ The purpose of OreTrack is to predict and prepare for emergency situations and t
 3. Database: Mysql
 
 ## Collection Postman
-![](C:\Users\Admin\Downloads\postman.png "Postman Collection of OreTrack")
+![](https://github.com/vinhnk2920/OreTrack-Backend/blob/main/static/postman.png)
 
 [Link postman collection](https://api.postman.com/collections/18193317-8662e077-45d6-403f-a821-52f4573142e7?access_key=PMAT-01GY3RQ2XSX6KTNC16X0A7RCWN)
 
