@@ -649,5 +649,7 @@ curl --location '{{url}}/get-rescue-team?team_id=3' \
 
 ## Build Setup
 
-> flask --app app.py --debug run
+```sh
+flask --app app.py --debug run
+```
 
